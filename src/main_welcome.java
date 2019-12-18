@@ -21,7 +21,9 @@ import javax.swing.table.DefaultTableModel;
  * @author laurence
  */
 public class main_welcome extends javax.swing.JFrame {
-
+    
+product_class prodc = new product_class();
+int Prid=0;
     /**
      * Creates new form main_welcome
      */
@@ -64,12 +66,16 @@ public class main_welcome extends javax.swing.JFrame {
         pdlab = new javax.swing.JTextField();
         qtlab = new javax.swing.JSpinner();
         prilab = new javax.swing.JFormattedTextField();
-        jButton2 = new javax.swing.JButton();
+        abt = new javax.swing.JButton();
+        aqtbt = new javax.swing.JButton();
+        PrId = new javax.swing.JLabel();
+        ebt = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         labtab = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         addProd.setMinimumSize(new java.awt.Dimension(460, 340));
 
@@ -83,10 +89,21 @@ public class main_welcome extends javax.swing.JFrame {
 
         prilab.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        jButton2.setText("ADD");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        abt.setText("ADD");
+        abt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                abtActionPerformed(evt);
+            }
+        });
+
+        aqtbt.setText("ADD QTY");
+
+        PrId.setText("jLabel5");
+
+        ebt.setText("EDIT");
+        ebt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ebtActionPerformed(evt);
             }
         });
 
@@ -95,26 +112,31 @@ public class main_welcome extends javax.swing.JFrame {
         addProdLayout.setHorizontalGroup(
             addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addProdLayout.createSequentialGroup()
-                .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(addProdLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(addProdLayout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(qtlab))
-                            .addGroup(addProdLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pdlab, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addProdLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(prilab))))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(qtlab))
                     .addGroup(addProdLayout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pdlab, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addProdLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(prilab)))
                 .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(addProdLayout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ebt, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(abt, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                        .addComponent(aqtbt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PrId, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
         );
         addProdLayout.setVerticalGroup(
             addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,9 +153,15 @@ public class main_welcome extends javax.swing.JFrame {
                 .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(prilab))
-                .addGap(42, 42, 42)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(abt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PrId, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ebt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aqtbt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,6 +195,13 @@ public class main_welcome extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("EDIT");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,7 +216,9 @@ public class main_welcome extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -195,7 +232,8 @@ public class main_welcome extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -209,7 +247,7 @@ addProd.setLocationRelativeTo(this);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void abtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abtActionPerformed
 String pdname = pdlab.getText();
 int qty = (int)qtlab.getValue();
 String pri = prilab.getText();
@@ -226,7 +264,7 @@ pdlab.setText("");
 
 prilab.setText("");
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_abtActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 int selRow = labtab.getSelectedRow();
@@ -265,6 +303,62 @@ showRefresh();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+int row = labtab.getSelectedRow();
+if(row==-1){
+    JOptionPane.showMessageDialog(labtab, "PLEASE SELECT DATA ON THE TABLE","ERROR",JOptionPane.ERROR_MESSAGE);
+}else{
+    int opti = JOptionPane.showConfirmDialog(labtab, "ARE YOU SURE YOU WANT TO EDIT THIS DATA?","CONFIRMATION",JOptionPane.YES_NO_OPTION);
+    if(opti==JOptionPane.YES_OPTION){
+    String id = labtab.getValueAt(row, 0).toString();
+    String prodname = labtab.getValueAt(row, 1).toString();
+    String qu = labtab.getValueAt(row, 2).toString();
+    String popri = labtab.getValueAt(row, 3).toString();
+    PrId.setText(id);
+    pdlab.setText(prodname);
+    qtlab.setToolTipText(qu);
+    prilab.setText(popri);
+}
+    this.setVisible(false);
+    addProd.setVisible(true);
+}
+addProd.setVisible(true);this.setVisible(false);addProd.setLocationRelativeTo(null);abt.setVisible(false);ebt.setVisible(true);qtlab.setEnabled(false);aqtbt.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ebtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ebtActionPerformed
+int id = Integer.parseInt(PrId.getText());
+String prdname = pdlab.getText();
+String prqu = qtlab.getToolTipText();
+String prci = prilab.getText();
+
+try{
+    String sql = "update products set PRODUCT_NAME=?, PRICE=? where ID=?;";
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection conn = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/formreg?", "root", "");
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+   
+    pstmt.setString(1, prdname);
+    pstmt.setString(2, prci);
+    pstmt.setInt(3, id);
+    if(pdlab.getText().equals("") || prilab.getText().equals("")){
+       JOptionPane.showMessageDialog(addProd, "PLEASE FILL UP ALL FIELDS","WARNING",JOptionPane.WARNING_MESSAGE);  
+     }else{
+        pstmt.executeUpdate();
+        pdlab.setText("");
+        prilab.setText("");
+        addProd.setVisible(false);
+        main_welcome mnp = new main_welcome();
+        mnp.setVisible(true); 
+    }
+}   catch (ClassNotFoundException ex) {
+        Logger.getLogger(main_welcome.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(main_welcome.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ebtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -301,7 +395,11 @@ showRefresh();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel PrId;
+    private javax.swing.JButton abt;
     private javax.swing.JFrame addProd;
+    private javax.swing.JButton aqtbt;
+    private javax.swing.JButton ebt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
