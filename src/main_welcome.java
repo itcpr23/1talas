@@ -94,6 +94,7 @@ int Prid=0;
         aqtbt = new javax.swing.JButton();
         PrId = new javax.swing.JLabel();
         ebt = new javax.swing.JButton();
+        xt_qty = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         labtab = new javax.swing.JTable();
@@ -102,6 +103,7 @@ int Prid=0;
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         srchprd = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         addProd.setMinimumSize(new java.awt.Dimension(460, 340));
 
@@ -123,6 +125,11 @@ int Prid=0;
         });
 
         aqtbt.setText("ADD QTY");
+        aqtbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aqtbtActionPerformed(evt);
+            }
+        });
 
         PrId.setText("jLabel5");
 
@@ -143,7 +150,9 @@ int Prid=0;
                     .addGroup(addProdLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(qtlab))
+                        .addComponent(xt_qty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(qtlab, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addProdLayout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -156,10 +165,9 @@ int Prid=0;
             .addGroup(addProdLayout.createSequentialGroup()
                 .addGap(172, 172, 172)
                 .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ebt, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                    .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(abt, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                        .addComponent(aqtbt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(ebt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(abt, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(aqtbt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PrId, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76))
@@ -174,7 +182,8 @@ int Prid=0;
                 .addGap(24, 24, 24)
                 .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(qtlab)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(xt_qty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24)
                 .addGroup(addProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
@@ -236,6 +245,13 @@ int Prid=0;
             }
         });
 
+        jButton4.setText("ADD QUANTITY");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -260,7 +276,9 @@ int Prid=0;
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(10, 10, 10))))
         );
@@ -279,7 +297,8 @@ int Prid=0;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -409,6 +428,33 @@ try{
 searchProd();        // TODO add your handling code here:
     }//GEN-LAST:event_srchprdKeyReleased
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+int row = labtab.getSelectedRow();
+if(row != -1 ){
+    addProd.setVisible(true);abt.setVisible(false);ebt.setVisible(false);aqtbt.setVisible(true);addProd.setLocationRelativeTo(this);prilab.setEnabled(false);pdlab.setEnabled(false);
+    Object pnm = labtab.getValueAt(row, 1);
+Object pqt = labtab.getValueAt(row, 2);
+Object ppri = labtab.getValueAt(row, 3);
+Prid = Integer.parseInt(labtab.getValueAt(row, 0).toString());
+
+pdlab.setText(pnm.toString());
+xt_qty.setText(pqt.toString());
+prilab.setValue(Double.parseDouble(ppri.toString()));
+}else{
+    JOptionPane.showMessageDialog(labtab, "PLEASE SELECT DATA ON THE TABLE","ERROR",JOptionPane.ERROR_MESSAGE);
+}
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void aqtbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aqtbtActionPerformed
+Object proqu = qtlab.getValue();
+prodc.addQty(Prid, proqu);
+this.showRefresh();
+addProd.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aqtbtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -453,6 +499,7 @@ searchProd();        // TODO add your handling code here:
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -464,5 +511,6 @@ searchProd();        // TODO add your handling code here:
     private javax.swing.JFormattedTextField prilab;
     private javax.swing.JSpinner qtlab;
     private javax.swing.JTextField srchprd;
+    private javax.swing.JLabel xt_qty;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,4 +40,20 @@ public class product_class {
         
         return lab;
     }
+    public int addQty(int id, Object quantity){
+        int tati=0;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/formreg?", "root", "");
+            PreparedStatement ps = con.prepareStatement("update products set quantity = (quantity + ?) where ID = ?");
+            ps.setObject(1, quantity);
+            ps.setInt(2, id);
+            tati =  ps.executeUpdate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(product_class.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(product_class.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tati;
+    }
 }
