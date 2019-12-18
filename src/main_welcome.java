@@ -31,6 +31,30 @@ int Prid=0;
         initComponents();jLabel1.setText("WELCOME!");
         showRefresh();
     }
+    public void searchProd(){
+        String prodname = srchprd.getText();
+        try{
+           String sql = "select * from products where PRODUCT_NAME like ?;";
+           Class.forName("com.mysql.jdbc.Driver");
+           Connection conn = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/formreg?", "root", "");
+           PreparedStatement pstmt = conn.prepareStatement(sql);
+           pstmt.setString(1, "%"+prodname+"%");
+           ResultSet rs = pstmt.executeQuery();
+           DefaultTableModel tbl = (DefaultTableModel)labtab.getModel();
+           tbl.setRowCount(0);
+           if(!rs.isBeforeFirst()){
+               tbl.addRow(new Object[]{"NO DATA", "NO DATA", "NO DATA", "NO DATA"});
+           }else{
+                while(rs.next()){
+                    tbl.addRow(new Object[]{rs.getString("ID"),rs.getString("PRODUCT_NAME"),rs.getString("QUANTITY"),rs.getString("PRICE")});
+                }
+           }
+        } catch (ClassNotFoundException ex) {
+        Logger.getLogger(main_welcome.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(main_welcome.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
     public void showRefresh(){
         String sql = "select * from products;";
         try{
@@ -76,6 +100,8 @@ int Prid=0;
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        srchprd = new javax.swing.JTextField();
 
         addProd.setMinimumSize(new java.awt.Dimension(460, 340));
 
@@ -202,6 +228,14 @@ int Prid=0;
             }
         });
 
+        jLabel5.setText("SEARCH:");
+
+        srchprd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                srchprdKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,26 +243,38 @@ int Prid=0;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(srchprd))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(srchprd, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
@@ -359,6 +405,10 @@ try{
         // TODO add your handling code here:
     }//GEN-LAST:event_ebtActionPerformed
 
+    private void srchprdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_srchprdKeyReleased
+searchProd();        // TODO add your handling code here:
+    }//GEN-LAST:event_srchprdKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -407,10 +457,12 @@ try{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable labtab;
     private javax.swing.JTextField pdlab;
     private javax.swing.JFormattedTextField prilab;
     private javax.swing.JSpinner qtlab;
+    private javax.swing.JTextField srchprd;
     // End of variables declaration//GEN-END:variables
 }
